@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Transactions &mdash; How to use Laboratory  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Make a custom token" href="token.html" />
+    <link rel="prev" title="Accounts" href="create-account.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> How to use Laboratory
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="create-account.html">Accounts</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Transactions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#active-an-account">Active an account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#send-and-receive-money">Send and Receive Money</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-trustline">Create a trustline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transfer-a-token">Transfer a token</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="token.html">Make a custom token</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lock.html">Freezing Assets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="un-lock.html">Un-Freezing Assets</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">How to use Laboratory</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Transactions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/transactions.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="transactions">
+<h1>Transactions<a class="headerlink" href="#transactions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="active-an-account">
+<h2>Active an account<a class="headerlink" href="#active-an-account" title="Permalink to this headline">¶</a></h2>
+<p>This operation creates and funds a new account with the specified starting balance.</p>
+<p>Go to <a class="reference external" href="https://www.stellar.org/laboratory/#txbuilder">Transaction Builder</a>, this is what that operation looks like:</p>
+<ul class="simple">
+<li><strong>Source Account</strong>: Your public address</li>
+<li><strong>Operation Type</strong>: Create Account</li>
+<li><strong>Destination</strong>: New public key that you want to create</li>
+<li><strong>Starting Balance</strong>: e.g. 40</li>
+</ul>
+<img alt="_images/create_account.png" class="align-center" src="_images/create_account.png" />
+<p>Then sign transaction with your private key:</p>
+<img alt="_images/create_account_signed.png" class="align-center" src="_images/create_account_signed.png" />
+<p>If all goes well, you’ll see a successful transaction like so:</p>
+<img alt="_images/create_account_result.png" class="align-center" src="_images/create_account_result.png" />
+<p>Now you can check the balance of new user <a class="reference external" href="https://how-to-use-laboratory.readthedocs.io/en/latest/create-account.html#check-balances-of-an-account">here</a></p>
+</div>
+<div class="section" id="send-and-receive-money">
+<h2>Send and Receive Money<a class="headerlink" href="#send-and-receive-money" title="Permalink to this headline">¶</a></h2>
+<p>Now that you have an account, you can send and receive funds through the Triam network. If you haven’t created an account yet, please follow <a class="reference external" href="https://how-to-use-laboratory.readthedocs.io/en/latest/create-account.html">this</a>.</p>
+<p>Most of the time, you’ll be sending money to someone else who has their own account.</p>
+<p>Go to <a class="reference external" href="https://www.stellar.org/laboratory/#txbuilder">Transaction Builder</a>, this is what that operation looks like:</p>
+<ul class="simple">
+<li><strong>Source Account</strong>: Your public address</li>
+<li><strong>Operation Type</strong>: Payment</li>
+<li><strong>Destination</strong>: Your destination public address</li>
+<li><strong>Asset</strong>: Native</li>
+<li><strong>Amount</strong>: e.g. 20</li>
+</ul>
+<img alt="_images/payment.png" class="align-center" src="_images/payment.png" />
+<p>Then sign transaction with your private key:</p>
+<img alt="_images/payment_signed.png" class="align-center" src="_images/payment_signed.png" />
+<p>If all goes well, you’ll see a successful transaction like so:</p>
+<img alt="_images/payment_result.png" class="align-center" src="_images/payment_result.png" />
+<p>Now you can check the balance of new user <a class="reference external" href="https://how-to-use-laboratory.readthedocs.io/en/latest/create-account.html#check-balances-of-an-account">here</a></p>
+</div>
+<div class="section" id="create-a-trustline">
+<h2>Create a trustline<a class="headerlink" href="#create-a-trustline" title="Permalink to this headline">¶</a></h2>
+<p>When you hold assets in Triam, you’re actually holding credit from a particular issuer. The issuer has agreed that it will trade you its credit on the Stellar network for the corresponding asset–e.g., fiat currency, precious metal–outside of Stellar. Let’s say that Scott issues oranges as credit on the network. If you hold orange credits, you and Scott have an agreement based on trust, or a trustline: you both agree that when you give Scott an orange credit, he gives you an orange.</p>
+<p>When you hold an asset, you must trust the issuer to properly redeem its credit. Since users of Triam will not want to trust just any issuer, accounts must explicitly trust an issuing account before they’re able to hold the issuer’s credit. In the example above, you must explicitly trust Scott before you can hold orange credits.</p>
+<p>To trust an issuing account, you create a trustline. Trustlines are entries that persist in the Triam ledger. They track the limit for which your account trusts the issuing account and the amount of credit from the issuing account that your account currently holds.</p>
+<p>Now go to <a class="reference external" href="https://www.stellar.org/laboratory/#txbuilder">Transaction Builder</a> to create a trust line:</p>
+<img alt="_images/trust_line.png" class="align-center" src="_images/trust_line.png" />
+<p>Then sign transaction with your private key:</p>
+<img alt="_images/trust_line_signed.png" class="align-center" src="_images/trust_line_signed.png" />
+<p>If all goes well, you’ll see a successful transaction like so:</p>
+<img alt="_images/trust_line_result.png" class="align-center" src="_images/trust_line_result.png" />
+</div>
+<div class="section" id="transfer-a-token">
+<h2>Transfer a token<a class="headerlink" href="#transfer-a-token" title="Permalink to this headline">¶</a></h2>
+<p>Go to <a class="reference external" href="https://www.stellar.org/laboratory/#txbuilder">Transaction Builder</a>, this is what that operation looks like:</p>
+<img alt="_images/send_token.png" class="align-center" src="_images/send_token.png" />
+<p>Then sign transaction with your private key:</p>
+<img alt="_images/send_token_signed.png" class="align-center" src="_images/send_token_signed.png" />
+<p>If all goes well, you’ll see a successful transaction like so:</p>
+<img alt="_images/send_token_result.png" class="align-center" src="_images/send_token_result.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="token.html" class="btn btn-neutral float-right" title="Make a custom token" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="create-account.html" class="btn btn-neutral" title="Accounts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tho Nguyen.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

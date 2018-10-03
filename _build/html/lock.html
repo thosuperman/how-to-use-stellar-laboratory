@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Freezing Assets &mdash; How to use Laboratory  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Un-Freezing Assets" href="un-lock.html" />
+    <link rel="prev" title="Make a custom token" href="token.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> How to use Laboratory
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="create-account.html">Accounts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transactions.html">Transactions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="token.html">Make a custom token</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Freezing Assets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#foreword">Foreword</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-check-the-flags-of-issuer">Step 1: Check the flags of Issuer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-set-flags-to-true">Step 2: Set flags to <em>True</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-deauthorizes-users-trustline">Step 3: Deauthorizes User’s Trustline</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="un-lock.html">Un-Freezing Assets</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">How to use Laboratory</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Freezing Assets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/lock.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="freezing-assets">
+<h1>Freezing Assets<a class="headerlink" href="#freezing-assets" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="foreword">
+<h2>Foreword<a class="headerlink" href="#foreword" title="Permalink to this headline">¶</a></h2>
+<p>By default, anyone can create a trustline with an asset issuer to accept an asset. However, as an anchor, you can explicitly authorize and revoke user access to your asset by enabling the following flags on your issuing account.</p>
+<ul class="simple">
+<li><strong>AUTHORIZATION REQUIRED</strong>: with this setting, the anchor must approve anyone who wants to hold its asset, allowing it to control who its customers are. Approving is done by the anchor by setting the Authorize flag of an existing trustline to true with the Allow Trust operation.</li>
+<li><strong>AUTHORIZATION REVOCABLE</strong>: with this setting, the anchor can set Authorize flag of existing trustline to false with the Allow Trust operation, to freeze the asset held by another account. When an asset is frozen for a particular account, that account can’t transfer the asset to any other account, not even back to the anchor. This setting allows the issuing account to revoke assets that it accidentally issued or that were obtained improperly. To use this setting, AUTHORIZATION REQUIRED must also be enabled.</li>
+</ul>
+<p>Example flow for an account with AUTHORIZATION REQUIRED and AUTHORIZATION REVOCABLE enabled:</p>
+<ol class="arabic simple">
+<li>User decides he/she wants to accept an asset</li>
+<li>User opens a trust line with this asset’s issuing account</li>
+<li>Issuer authorizes the user’s trustline</li>
+<li>User can accept and send the asset to whomever else has a trustline open with the issuer</li>
+<li>Issuer wants to freeze user’s access to asset</li>
+<li>Issuer deauthorizes user’s trustline</li>
+<li>User cannot send or accept this asset</li>
+</ol>
+<p>Now, let’s freeze an asset on test network:</p>
+<p>Asset details:</p>
+<ul class="simple">
+<li><strong>Issuer</strong>: GDEOWSTRKOKKZYGFSACSCXKONNB6W7V4ZEPBW7H7DUXJ3Y7ZJHYDBHZQ</li>
+<li><strong>Asset Code</strong>: TEC</li>
+<li><strong>Asset Type</strong>: credit_alphanum4</li>
+</ul>
+</div>
+<div class="section" id="step-1-check-the-flags-of-issuer">
+<h2>Step 1: Check the flags of Issuer<a class="headerlink" href="#step-1-check-the-flags-of-issuer" title="Permalink to this headline">¶</a></h2>
+<p>Make sure issuer’s flags: “<strong>auth_required</strong>” and “<strong>auth_revocable</strong>” are TRUE</p>
+<p>Now go to <a class="reference external" href="https://www.stellar.org/laboratory/#explorer?resource=accounts&amp;endpoint=single&amp;network=test">Endpoint Explorer</a></p>
+<img alt="_images/endpoint.png" class="align-center" src="_images/endpoint.png" />
+<img alt="_images/endpoint_result.png" class="align-center" src="_images/endpoint_result.png" />
+</div>
+<div class="section" id="step-2-set-flags-to-true">
+<h2>Step 2: Set flags to <em>True</em><a class="headerlink" href="#step-2-set-flags-to-true" title="Permalink to this headline">¶</a></h2>
+<p>Go to <a class="reference external" href="https://www.stellar.org/laboratory/#txbuilder?network=test">Transaction Builder</a>, this is what that operation looks like:</p>
+<ul class="simple">
+<li><strong>Source Account</strong>: Issuer’s public address</li>
+<li><strong>Operation Type</strong>: Set Options</li>
+<li><strong>Set Flags</strong>: “Authorization required” and “Authorization revocable”</li>
+</ul>
+<img alt="_images/set-flags.png" class="align-center" src="_images/set-flags.png" />
+<p>Then sign transaction and submit to the network.</p>
+<p>If all goes well, you’ll see a successful transaction like so:</p>
+<img alt="_images/set-flags-result.png" class="align-center" src="_images/set-flags-result.png" />
+<p>Now go to <a class="reference external" href="https://how-to-use-laboratory.readthedocs.io/en/latest/lock.html#step-1-check-the-flags-of-issuer">Step 1</a> to re-check statuses.</p>
+</div>
+<div class="section" id="step-3-deauthorizes-users-trustline">
+<h2>Step 3: Deauthorizes User’s Trustline<a class="headerlink" href="#step-3-deauthorizes-users-trustline" title="Permalink to this headline">¶</a></h2>
+<p>Go to <a class="reference external" href="https://www.stellar.org/laboratory/#txbuilder?network=test">Transaction Builder</a>, this is what that operation looks like:</p>
+<ul class="simple">
+<li><strong>Source Account</strong>: Issuer’s public address</li>
+<li><strong>Operation Type</strong>: Allow Trust</li>
+<li><strong>Trustor</strong>: User’s public key that you want to freeze the asset</li>
+<li><strong>Asset Code</strong>: e.g. TEC</li>
+<li><strong>Authorize</strong>: false</li>
+</ul>
+<img alt="_images/lock.png" class="align-center" src="_images/lock.png" />
+<p>Then sign transaction and submit to the network.</p>
+<p>Finally, User cannot send or accept this asset.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="un-lock.html" class="btn btn-neutral float-right" title="Un-Freezing Assets" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="token.html" class="btn btn-neutral" title="Make a custom token" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tho Nguyen.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

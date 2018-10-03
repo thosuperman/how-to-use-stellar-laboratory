@@ -1,0 +1,23 @@
+# IDE & DevelopmentTool
+/.idea
+/nbproject/private/
+/nbproject/
+/vagrant/.vagrant
+/.bundle
+/pimple.json
+composer.lock
+
+# environment
+.env
+
+# OS
+.DS_Store
+sh.exe.stackdump
+
+# logs & tmp file
+*.swp
+!.gitkeep
+
+# python compile
+*.pyc
+
